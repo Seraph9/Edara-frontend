@@ -1,8 +1,13 @@
 import React from 'react';
+import List from './components/List';
 
 function App() {
   return (
-    <h1>Hello world!</h1>
+    <div>
+      <h1>Idara App!</h1>
+      <List title='test' />
+    </div>
+
   );
 }
 
