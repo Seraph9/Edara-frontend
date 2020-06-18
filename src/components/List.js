@@ -1,11 +1,13 @@
 import React from 'react';
 import Cards from './Cards';
+import AddButtons from './AddButtons';
 
 function List({ title, cards }) {
     return (
         <div style={styles.container}>
             <h4>{title}</h4>
-            {cards.map(card => <Cards text={card.text} />)}
+            {cards.map(card => <Cards key={card.id} text={card.text} />)}
+            <AddButtons />
         </div>
 
     )

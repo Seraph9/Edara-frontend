@@ -10,7 +10,7 @@ class App extends Component {
       <div>
         <h1>Idara App!</h1>
         <div style={styles.listsContainer}>
-          {lists.map(list => <List title={list.title} cards={list.cards} />)}
+          {lists.map(list => <List key={list.id} title={list.title} cards={list.cards} />)}
         </div>
       </div>
     )
