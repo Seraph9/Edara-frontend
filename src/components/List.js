@@ -19,6 +19,7 @@ const styles = {
         borderRadius: 3,
         width: 300,
         padding: 8,
+        height: '100%',
         marginRight: 8
         // fontFamily: 'monospace',
         // fontSize: 18

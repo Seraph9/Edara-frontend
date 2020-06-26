@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import List from './components/List';
 import { connect } from 'react-redux';
+import AddButtons from './components/AddButtons';
 
 class App extends Component {
   render() {
@@ -11,6 +12,7 @@ class App extends Component {
         <h1>Idara App!</h1>
         <div style={styles.listsContainer}>
           {lists.map(list => <List key={list.id} title={list.title} cards={list.cards} />)}
+          <AddButtons list />
         </div>
       </div>
     )

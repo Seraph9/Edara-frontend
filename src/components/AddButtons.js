@@ -1,10 +1,16 @@
 import React from 'react';
 import Icon from '@material-ui/core/Icon';
+import Card from '@material-ui/core/Card';
+import Button from '@material-ui/core/Button';
+import TextareaAutosize from 'react-textarea-autosize';
+
 
 class AddButtons extends React.Component {
 
     state = {
-        formOpen: false
+        formOpen: false,
+        text: ''
+
     }
 
     addButton = () => {
@@ -28,7 +34,42 @@ class AddButtons extends React.Component {
     }
 
     renderForm = () => {
-        return <p>Form</p>
+        const { list } = this.props;
+
+        const placeholder = list
+            ? 'Enter list title...'
+            : 'Enter a title for this card...';
+
+        const buttonTitle = list ? 'Add List' : 'Add Card';
+
+        return <div>
+            <Card style={{
+                // overflow: 'visible',
+                minHeight: 85,
+                minWidth: 272,
+                padding: '6px 8px 2px'
+            }}>
+                <TextareaAutosize
+                    placeholder={placeholder}
+                    autoFocus
+                    onBlur={this.closeForm}
+                    value={this.state.text}
+                    onChange={this.handleInputChange}
+                    style={{
+                        resize: 'none',
+                        width: '100%',
+                        overflow: 'hidden',
+                        outline: 'none',
+                        border: 'none'
+                    }} />
+            </Card>
+            <div style={styles.formButton}>
+                <Button variant='contained' style={{ color: 'white', backgroundColor: '#5aac44' }}>
+                    {buttonTitle}{' '}
+                </Button>
+                <Icon style={{ marginLeft: 8, cursor: 'pointer' }}>close</Icon>
+            </div>
+        </div>
     }
 
     openForm = () => {
@@ -37,7 +78,20 @@ class AddButtons extends React.Component {
         })
     }
 
+    closeForm = () => {
+        this.setState({
+            formOpen: false
+        });
+    };
+
+    handleInputChange = e => {
+        this.setState({
+            text: e.target.value
+        })
+    }
+
     render() {
+
         return this.state.formOpen ? this.renderForm() : this.addButton();
     }
 };
@@ -51,6 +105,11 @@ const styles = {
         height: 36,
         width: 272,
         paddingLeft: 10
+    },
+    formButton: {
+        marginTop: 8,
+        display: 'flex',
+        alignItems: 'center'
     }
 }
 
