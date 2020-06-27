@@ -6,12 +6,16 @@ import AddButtons from './components/AddButtons';
 class App extends Component {
   render() {
     const { lists } = this.props;
+    console.log(lists);
 
     return (
       <div>
         <h1>Idara App!</h1>
         <div style={styles.listsContainer}>
-          {lists.map(list => <List key={list.id} title={list.title} cards={list.cards} />)}
+          {lists.map(list => {
+            console.log(list);
+            return <List key={list.id} listID={list.id} title={list.title} cards={list.cards} />
+          })}
           <AddButtons list />
         </div>
       </div>

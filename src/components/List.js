@@ -2,12 +2,12 @@ import React from 'react';
 import Cards from './Cards';
 import AddButtons from './AddButtons';
 
-function List({ title, cards }) {
+function List({ title, cards, listID }) {
     return (
         <div style={styles.container}>
             <h4>{title}</h4>
             {cards.map(card => <Cards key={card.id} text={card.text} />)}
-            <AddButtons />
+            <AddButtons listID={listID} />
         </div>
 
     )

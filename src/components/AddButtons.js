@@ -3,6 +3,8 @@ import Icon from '@material-ui/core/Icon';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import TextareaAutosize from 'react-textarea-autosize';
+import { connect } from 'react-redux';
+import { createList, createCard } from '../actions';
 
 
 class AddButtons extends React.Component {
@@ -10,7 +12,6 @@ class AddButtons extends React.Component {
     state = {
         formOpen: false,
         text: ''
-
     }
 
     addButton = () => {
@@ -64,7 +65,11 @@ class AddButtons extends React.Component {
                     }} />
             </Card>
             <div style={styles.formButton}>
-                <Button variant='contained' style={{ color: 'white', backgroundColor: '#5aac44' }}>
+                <Button
+                    variant='contained'
+                    style={{ color: 'white', backgroundColor: '#5aac44' }}
+                    onMouseDown={list ? this.handleAddList : this.handleAddCard}
+                >
                     {buttonTitle}{' '}
                 </Button>
                 <Icon style={{ marginLeft: 8, cursor: 'pointer' }}>close</Icon>
@@ -90,8 +95,29 @@ class AddButtons extends React.Component {
         })
     }
 
-    render() {
+    handleAddList = () => {
+        const { dispatch } = this.props;
+        const { text } = this.state;
 
+        if (text) {
+            this.setState({ text: '' });
+            dispatch(createList(text));
+        }
+        return;
+    }
+
+    handleAddCard = () => {
+        const { dispatch, listID } = this.props;
+        const { text } = this.state;
+
+        if (text) {
+            this.setState({ text: '' });
+            dispatch(createCard(text, listID));
+        }
+    }
+
+    render() {
+        console.log(this.props);
         return this.state.formOpen ? this.renderForm() : this.addButton();
     }
 };
@@ -113,4 +139,10 @@ const styles = {
     }
 }
 
-export default AddButtons;
+// const mapDispatchToProps = dispatch => ({
+//     dispatch: (text, listID) => {
+//         dispatch(createCard(text, listID))
+//     }
+// })
+
+export default connect()(AddButtons);
