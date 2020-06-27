@@ -1,37 +1,37 @@
 import { ADD_CARD, ADD_LIST } from '../actions';
 
 let listID = 3;
-let cardID = 4;
+let cardID = 6;
 
 const initialState = [
     {
-        id: 1,
+        id: `list-${1}`,
         title: 'Task Number 1: Trello-Clone Project Management App',
         cards: [
             {
-                id: 1,
+                id: `card-${1}`,
                 text: 'List Column Component',
             },
             {
-                id: 2,
+                id: `card-${2}`,
                 text: 'Card for tasks placed within a list column component',
             }
         ]
     },
     {
-        id: 2,
+        id: `list-${2}`,
         title: 'Task Number 2: Trello-Clone Project Management App',
         cards: [
             {
-                id: 1,
+                id: `card-${3}`,
                 text: 'Making lists appear in columns',
             },
             {
-                id: 2,
+                id: `card-${4}`,
                 text: 'Styling lists',
             },
             {
-                id: 3,
+                id: `card-${5}`,
                 text: 'Video 3 coming up!',
             }
         ]
@@ -44,14 +44,14 @@ const listsReducer = (state = initialState, action) => {
             const newList = {
                 title: action.payload,
                 cards: [],
-                id: listID
+                id: `list-${listID}`
             };
             listID += 1
             return [...state, newList];
         case ADD_CARD:
             const newCard = {
                 text: action.payload.text,
-                id: cardID
+                id: `card-${cardID}`
             };
             cardID += 1;
             const newState = state.map(list => {
