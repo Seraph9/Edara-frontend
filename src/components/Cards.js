@@ -9,7 +9,11 @@ const Cards = ({ text, id, index }) => {
     return (
         <Draggable draggableId={String(id)} index={index}>
             {provided => (
-                <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                >
                     <Card style={styles.cardContainer}>
                         <CardContent>
                             <Typography gutterBottom>{text}</Typography>

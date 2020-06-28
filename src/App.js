@@ -3,13 +3,26 @@ import List from './components/List';
 import { connect } from 'react-redux';
 import AddButtons from './components/AddButtons';
 import { DragDropContext } from 'react-beautiful-dnd';
+import { sort } from './actions';
 
 class App extends Component {
 
-  onDragEnd = () => {
+  onDragEnd = result => {
     // re-ordering logic for drag-n-drop persistence
-
-  }
+    const { destination, source, draggableId } = result;
+    if (!destination) {
+      return;
+    }
+    this.props.dispatch(
+      sort(
+        source.droppableId,
+        destination.droppableId,
+        source.index,
+        destination.index,
+        draggableId
+      )
+    );
+  };
 
   render() {
     const { lists } = this.props;
@@ -18,7 +31,7 @@ class App extends Component {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div>
-          <h1>Idara App!</h1>
+          <h1>Edara App!</h1>
           <div style={styles.listsContainer}>
             {lists.map(list => {
               console.log(list);
