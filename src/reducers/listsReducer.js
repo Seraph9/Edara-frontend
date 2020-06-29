@@ -32,7 +32,7 @@ const initialState = [
             },
             {
                 id: `card-${5}`,
-                text: 'Video 3 coming up!',
+                text: 'Backend coming up!',
             }
         ]
     }
@@ -71,9 +71,16 @@ const listsReducer = (state = initialState, action) => {
                 droppableIdEnd,
                 droppableIndexStart,
                 droppableIndexEnd,
-                draggableId } = action.payload;
+                draggableId, type } = action.payload;
 
             const newState = [...state];
+
+            // moving/dragging lists/columns around the page
+            if (type === 'list') {
+                const list = newState.splice(droppableIndexStart, 1);
+                newState.splice(droppableIndexEnd, 0, ...list);
+                return newState;
+            }
 
             // move cards in the same list/column
             if (droppableIdStart === droppableIdEnd) {

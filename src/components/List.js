@@ -1,20 +1,32 @@
 import React from 'react';
 import Cards from './Cards';
 import AddButtons from './AddButtons';
-import { Droppable } from 'react-beautiful-dnd';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 
-function List({ title, cards, listID }) {
+function List({ title, cards, listID, index }) {
     return (
-        <Droppable droppableId={String(listID)}>
+        <Draggable draggableId={String(listID)} index={index}>
             {provided => (
-                <div {...provided.droppableProps} ref={provided.innerRef} style={styles.container}>
-                    <h4>{title}</h4>
-                    {cards.map((card, index) => <Cards key={card.id} index={index} id={card.id} text={card.text} />)}
-                    <AddButtons listID={listID} />
-                    {provided.placeholder}
+                <div
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                    ref={provided.innerRef}
+                    style={styles.container}
+                >
+                    <Droppable droppableId={String(listID)}>
+                        {provided => (
+                            <div {...provided.droppableProps} ref={provided.innerRef}>
+                                <h4>{title}</h4>
+                                {cards.map((card, index) => <Cards key={card.id} index={index} id={card.id} text={card.text} />)}
+                                {provided.placeholder}
+                                <AddButtons listID={listID} />
+                            </div>
+                        )}
+                    </Droppable>
                 </div>
             )}
-        </Droppable>
+        </Draggable>
+
     )
 };
 
