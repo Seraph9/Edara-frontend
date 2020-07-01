@@ -4,4 +4,5 @@ export * from './cardsActions';
 export const ADD_CARD = 'ADD_CARD';
 export const ADD_LIST = 'ADD_LIST';
 export const DRAGGED = 'DRAGGED';
+export const LOAD_LISTS = 'LOAD_LISTS';
 

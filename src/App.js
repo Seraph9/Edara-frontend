@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import AddButtons from './components/AddButtons';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { sort } from './actions';
+import Board from './components/Board';
 
 class App extends Component {
 
@@ -40,18 +41,7 @@ class App extends Component {
                 ref={provided.innerRef}
                 style={styles.listsContainer}
               >
-                {lists.map((list, index) => {
-                  //console.log(list);
-                  return (
-                    <List
-                      key={list.id}
-                      listID={list.id}
-                      title={list.title}
-                      cards={list.cards}
-                      index={index}
-                    />
-                  )
-                })}
+                <Board />
                 {provided.placeholder}
                 <AddButtons list />
               </div>

@@ -1,4 +1,4 @@
-import { ADD_CARD, ADD_LIST, DRAGGED } from '../actions';
+import { ADD_CARD, ADD_LIST, DRAGGED, LOAD_LISTS } from '../actions';
 
 let listID = 3;
 let cardID = 6;
@@ -101,6 +101,8 @@ const listsReducer = (state = initialState, action) => {
                 listEnd.cards.splice(droppableIndexEnd, 0, ...card);
             }
             return newState;
+        case LOAD_LISTS:
+            return [...action.payload]
         default:
             return state;
     }

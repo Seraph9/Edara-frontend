@@ -1,4 +1,4 @@
-import { ADD_LIST, DRAGGED } from './index';
+import { ADD_LIST, LOAD_LISTS, DRAGGED } from './index';
 
 export const createList = title => {
     return {
@@ -6,6 +6,13 @@ export const createList = title => {
         payload: title
     };
 };
+
+export const loadLists = lists => {
+    return {
+        type: LOAD_LISTS,
+        payload: lists
+    }
+}
 
 export const sort = (
     droppableIdStart,
