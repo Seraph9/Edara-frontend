@@ -3,6 +3,7 @@ import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
 import { Draggable } from 'react-beautiful-dnd';
+import { blue } from '@material-ui/core/colors';
 
 
 const Cards = ({ text, id, index }) => {
@@ -11,8 +12,8 @@ const Cards = ({ text, id, index }) => {
             {provided => (
                 <div
                     ref={provided.innerRef}
-                    {...provided.draggableProps}
                     {...provided.dragHandleProps}
+                    {...provided.draggableProps}
                 >
                     <Card style={styles.cardContainer}>
                         <CardContent>
@@ -28,7 +29,7 @@ const Cards = ({ text, id, index }) => {
 const styles = {
     cardContainer: {
         marginBottom: 8
-    }
+    },
 };
 
 export default Cards;

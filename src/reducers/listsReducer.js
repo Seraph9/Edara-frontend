@@ -79,6 +79,7 @@ const listsReducer = (state = initialState, action) => {
             if (type === 'list') {
                 const list = newState.splice(droppableIndexStart, 1);
                 newState.splice(droppableIndexEnd, 0, ...list);
+                console.log(newState);
                 return newState;
             }
 

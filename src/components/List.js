@@ -11,11 +11,14 @@ function List({ title, cards, listID, index }) {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     ref={provided.innerRef}
-                    style={styles.container}
+                    style={{
+                        ...styles.listContainer,
+                        ...provided.draggableProps.style
+                    }}
                 >
-                    <Droppable droppableId={String(listID)}>
+                    <Droppable droppableId={String(listID)} type='card'>
                         {provided => (
-                            <div {...provided.droppableProps} ref={provided.innerRef}>
+                            <div ref={provided.innerRef} {...provided.droppableProps}>
                                 <h4>{title}</h4>
                                 {cards.map((card, index) => <Cards key={card.id} index={index} id={card.id} text={card.text} />)}
                                 {provided.placeholder}
@@ -31,7 +34,7 @@ function List({ title, cards, listID, index }) {
 };
 
 const styles = {
-    container: {
+    listContainer: {
         backgroundColor: '#dfe3e6',
         borderRadius: 3,
         width: 300,

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import List from './components/List';
 import { connect } from 'react-redux';
-import AddButtons from './components/AddButtons';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { sort } from './actions';
-import Board from './components/Board';
+// import Board from './components/Board';
+import List from './components/List';
+import AddButtons from './components/AddButtons';
+
 
 class App extends Component {
 
@@ -14,6 +15,10 @@ class App extends Component {
     if (!destination) {
       return;
     }
+    // if (type === 'list') {
+    //   return;
+    // }
+    console.log('logged')
     this.props.dispatch(
       sort(
         source.droppableId,
@@ -32,22 +37,32 @@ class App extends Component {
 
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
-        <div>
-          <h1>Edara App!</h1>
-          <Droppable droppableId='all-lists' direction='horizontal' type='list'>
-            {provided => (
-              <div
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-                style={styles.listsContainer}
-              >
-                <Board />
-                {provided.placeholder}
-                <AddButtons list />
-              </div>
-            )}
-          </Droppable>
-        </div>
+        <h1>Edara App!</h1>
+        <Droppable droppableId='all-lists' direction='horizontal' type='list'>
+          {provided => (
+            <div
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+              style={styles.listsContainer}
+            >
+              {/* <Board /> */}
+              {lists.map((list, index) => {
+                //console.log(list);
+                return (
+                  <List
+                    key={list.id}
+                    listID={list.id}
+                    title={list.title}
+                    cards={list.cards}
+                    index={index}
+                  />
+                )
+              })}
+              {provided.placeholder}
+              <AddButtons list />
+            </div>
+          )}
+        </Droppable>
       </DragDropContext>
     )
   }
