@@ -3,7 +3,7 @@ import Icon from '@material-ui/core/Icon';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import TextareaAutosize from 'react-textarea-autosize';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { createList, createCard } from '../actions';
 
 
@@ -69,6 +69,7 @@ class AddButtons extends React.Component {
                     variant='contained'
                     style={{ color: 'white', backgroundColor: '#5aac44' }}
                     onMouseDown={list ? this.handleAddList : this.handleAddCard}
+                // onClick={list ? this.createList : this.createCard}
                 >
                     {buttonTitle}{' '}
                 </Button>
@@ -95,16 +96,16 @@ class AddButtons extends React.Component {
         })
     }
 
-    handleAddList = () => {
-        const { dispatch } = this.props;
-        const { text } = this.state;
+    // handleAddList = () => {
+    //     const { dispatch } = this.props;
+    //     const { text } = this.state;
 
-        if (text) {
-            this.setState({ text: '' });
-            dispatch(createList(text));
-        }
-        return;
-    }
+    //     if (text) {
+    //         this.setState({ text: '' });
+    //         dispatch(createList(text));
+    //     }
+    //     return;
+    // }
 
     handleAddCard = () => {
         const { dispatch, listID } = this.props;
@@ -114,10 +115,37 @@ class AddButtons extends React.Component {
             this.setState({ text: '' });
             dispatch(createCard(text, listID));
         }
+    };
+
+    // dispatch = useDispatch();
+
+    handleAddList = async e => {
+        e.preventDefault();
+        const { dispatch } = this.props;
+        const { text } = this.state;
+
+        if (text) {
+            this.setState({ text: '' });
+            dispatch(createList(text));
+        }
+        const { id, title } = this.props.list;
+        const body = { id, title };
+        try {
+            const res = await fetch('http://localhost:8000/lists/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+            })
+            console.log('res:', res);
+            // const data = await res.json();
+            // console.log('data:', data);
+        } catch (err) {
+            console.error(err.message);
+        }
     }
 
     render() {
-        console.log(this.props);
+        //console.log(this.props);
         return this.state.formOpen ? this.renderForm() : this.addButton();
     }
 };

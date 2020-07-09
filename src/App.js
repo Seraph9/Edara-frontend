@@ -5,9 +5,15 @@ import { sort } from './actions';
 // import Board from './components/Board';
 import List from './components/List';
 import AddButtons from './components/AddButtons';
+import Splash from './components/Splash';
+import NavMenu from './components/NavMenu';
 
 
 class App extends Component {
+
+  state = {
+    isLoggedIn: false,
+  }
 
   onDragEnd = result => {
     // re-ordering logic for drag-n-drop persistence
@@ -34,10 +40,9 @@ class App extends Component {
   render() {
     const { lists } = this.props;
     //console.log(lists);
-
-    return (
+    return this.state.isLoggedIn ? (
       <DragDropContext onDragEnd={this.onDragEnd}>
-        <h1>Edara App!</h1>
+        <NavMenu style={styles.navMenu} />
         <Droppable droppableId='all-lists' direction='horizontal' type='list'>
           {provided => (
             <div
@@ -65,13 +70,15 @@ class App extends Component {
         </Droppable>
       </DragDropContext>
     )
+      : <Splash />
   }
 };
 
 const styles = {
   listsContainer: {
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginTop: 15,
   }
 }
 
