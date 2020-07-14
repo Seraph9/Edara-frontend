@@ -1,8 +1,7 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 import { handleErrors } from '../utils';
-
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -23,17 +22,17 @@ const styles = {
 
 }
 
-function Login() {
+function Signup() {
     const classes = useStyles();
 
-    const logInForm = document.querySelector('.loginform');
+    const signUpForm = document.querySelector('.signupform');
     const demoLogIn = document.getElementById('demoUser');
 
-    const handleLogin = async e => {
+    const handleSignup = async e => {
         e.preventDefault();
 
         //Grabs form inputs from the login form
-        const formData = new FormData(logInForm);
+        const formData = new FormData(signUpForm);
         const email = formData.get("email");
         const password = formData.get("password");
         const body = { email, password };
@@ -69,23 +68,22 @@ function Login() {
             handleErrors(err);
         }
     }
-
     return (
         <>
-            <form onSubmit={handleLogin} className='loginform'>
+            <form onSubmit={handleSignup} className='signupform'>
                 <input type='text' placeholder='Enter full name...' style={styles.inputs} />
                 <br />
                 <input type='email' placeholder='Enter email...' style={styles.inputs} />
                 <br />
                 <input type='password' placeholder='Enter password...' style={styles.inputs} />
                 <br />
-                <Button className={classes.button}>Log In</Button>
+                <Button className={classes.button}>Sign Up</Button>
             </form>
             <Button className={classes.button}>Demo User</Button>
             <br />
-            <a style={styles.anchors} href='/'>Don't have an account? Sign up here!</a>
+            <a style={styles.anchors} href='/'>Already have an account? Log in here!</a>
         </>
     )
 };
 
-export default Login;
+export default Signup;

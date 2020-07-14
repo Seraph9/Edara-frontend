@@ -8,6 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Login from './Login';
+import Signup from './Signup';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -44,6 +45,7 @@ function NavMenu() {
     // getModalStyle is not a pure function, we roll the style only on the first render
     // const [modalStyle] = React.useState(getModalStyle);
     const [open, setOpen] = React.useState(false);
+    const [open2, setOpen2] = React.useState(false);
 
     const handleOpen = () => {
         setOpen(true);
@@ -53,6 +55,14 @@ function NavMenu() {
         setOpen(false);
     };
 
+    const handleOpen2 = () => {
+        setOpen2(true);
+    };
+
+    const handleClose2 = () => {
+        setOpen2(false);
+    };
+
     const body = (
         <div className={classes.paper}>
             <h2 id="simple-modal-title">Log In</h2>
@@ -60,6 +70,16 @@ function NavMenu() {
                 Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </p>
             <Login />
+        </div>
+    );
+
+    const body2 = (
+        <div className={classes.paper}>
+            <h2 id="simple-modal-title">Sign Up</h2>
+            <p id="simple-modal-description">
+                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            </p>
+            <Signup />
         </div>
     );
 
@@ -73,6 +93,7 @@ function NavMenu() {
                     <Typography variant="h6" className={classes.title}>
                         Edara
                     </Typography>
+                    <Button color="inherit" onClick={handleOpen2}>Signup</Button>
                     <Button color="inherit" onClick={handleOpen}>Login</Button>
                     {open && <div>
                         <Modal
@@ -82,6 +103,16 @@ function NavMenu() {
                             aria-describedby="simple-modal-description"
                         >
                             {body}
+                        </Modal>
+                    </div>}
+                    {open2 && <div>
+                        <Modal
+                            open={open2}
+                            onClose={handleClose2}
+                            aria-labelledby="simple-modal-title"
+                            aria-describedby="simple-modal-description"
+                        >
+                            {body2}
                         </Modal>
                     </div>}
                 </Toolbar>
