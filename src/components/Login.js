@@ -26,18 +26,21 @@ const styles = {
 function Login() {
     const classes = useStyles();
 
-    const logInForm = document.querySelector('.loginform');
+    //const logInForm = document.querySelector('.loginform');
     const demoLogIn = document.getElementById('demoUser');
+    let loginform = document.getElementById('loginform');
 
     const handleLogin = async e => {
         e.preventDefault();
 
         //Grabs form inputs from the login form
-        const formData = new FormData(logInForm);
-        const email = formData.get("email");
-        const password = formData.get("password");
-        const body = { email, password };
-
+        const emailInput = document.getElementById('emailInput');
+        const passwordInput = document.getElementById('passwordInput');
+        // const formData = new FormData(loginform);
+        const email = emailInput.value;
+        const password = passwordInput.value;
+        let body = { email, password };
+        debugger
         try {
             const res = await fetch('http://localhost:8000/users/token', {
                 method: 'POST',
@@ -72,14 +75,14 @@ function Login() {
 
     return (
         <>
-            <form onSubmit={handleLogin} className='loginform'>
+            <form onSubmit={handleLogin} id='loginform' className='loginform'>
                 <input type='text' placeholder='Enter full name...' style={styles.inputs} />
                 <br />
-                <input type='email' placeholder='Enter email...' style={styles.inputs} />
+                <input id='emailInput' type='email' placeholder='Enter email...' style={styles.inputs} />
                 <br />
-                <input type='password' placeholder='Enter password...' style={styles.inputs} />
+                <input id='passwordInput' type='password' placeholder='Enter password...' style={styles.inputs} />
                 <br />
-                <Button className={classes.button}>Log In</Button>
+                <Button type='submit' className={classes.button}>Log In</Button>
             </form>
             <Button className={classes.button}>Demo User</Button>
             <br />

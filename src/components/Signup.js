@@ -29,7 +29,7 @@ function Signup() {
     const demoLogIn = document.getElementById('demoUser');
 
     const handleSignup = async e => {
-        e.preventDefault();
+        //e.preventDefault();
 
         //Grabs form inputs from the login form
         const formData = new FormData(signUpForm);
