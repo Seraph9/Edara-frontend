@@ -51,18 +51,6 @@ a:hover {
 }
 
 .parallax2 {
-  background-image: url('/images/Edara.png');
-  /* Set a specific height */
-  min-height: 500px; 
-
-  /* Create the parallax scrolling effect */
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.parallax3 {
   background-image: url('/images/proj_man_pic.jpg');
   /* Set a specific height */
   min-height: 500px; 
@@ -74,8 +62,20 @@ a:hover {
   background-size: cover;
 }
 
+.parallax3 {
+  background-image: url('/images/proj_man_table.png');
+  /* Set a specific height */
+  min-height: 500px; 
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .parallax4 {
-  background-image: url('/images/proj_man_chart.jpg');
+  background-image: url('/images/Edara.png');
   /* Set a specific height */
   min-height: 500px; 
 
@@ -87,7 +87,7 @@ a:hover {
 }
 
 .parallax5 {
-  background-image: url('/images/proj_man_diag.jpg');
+  background-image: url('/images/proj_teamwork.jpg');
   /* Set a specific height */
   min-height: 500px; 
 
