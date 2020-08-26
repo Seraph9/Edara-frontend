@@ -7,3 +7,107 @@ body {
 a:hover {
     background-color: burlywood
 }
+
+/* parallax */
+
+.intro {
+    font-family: Didot sans-serif;
+    font-size: 70px;
+    color: #bccad6;
+    text-align: center;
+}
+
+.footer-container {
+    background-color: #667292;
+    font-family: Didot sans-serif;
+    padding-top: 10px;
+    font-size: 30px;
+    color: #bccad6;
+    text-align: center;
+}
+
+.footer-contents {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.parallax1 {
+  background-image: url('/images/proj_man.jpg');
+  /* Set a specific height */
+  min-height: 500px; 
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallax2 {
+  background-image: url('/images/Edara.png');
+  /* Set a specific height */
+  min-height: 500px; 
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallax3 {
+  background-image: url('/images/proj_man_pic.jpg');
+  /* Set a specific height */
+  min-height: 500px; 
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallax4 {
+  background-image: url('/images/proj_man_chart.jpg');
+  /* Set a specific height */
+  min-height: 500px; 
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallax5 {
+  background-image: url('/images/proj_man_diag.jpg');
+  /* Set a specific height */
+  min-height: 500px; 
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallax-divs {
+    border: 7px inset sandybrown;
+    border-radius: .5em;
+    font-family: 'Roboto', 'Helvetica, Arial';
+    color: saddlebrown;
+    padding: 15px;
+    background-color: navajowhite;
+    font-size: 20px;
+    font-style: italic;
+}
+
+#splash-start {
+    margin-top: 10px;
+}

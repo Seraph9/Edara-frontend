@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
     navbar: {
-        backgroundColor: 'SandyBrown'
+        backgroundColor: 'SandyBrown',
     },
     menuButton: {
         marginRight: theme.spacing(2),
