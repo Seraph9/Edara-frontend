@@ -1,4 +1,5 @@
 /* TODO Add site wide styles */
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Poiret+One&amily=Nanum+Gothic&display=swap');
 
 body {
     background-color: BurlyWood;
@@ -100,14 +101,30 @@ a:hover {
 .parallax-divs {
     border: 7px inset sandybrown;
     border-radius: .5em;
-    font-family: 'Roboto', 'Helvetica, Arial';
-    color: saddlebrown;
+    font-family: 'Roboto';
+    color: white;
     padding: 15px;
-    background-color: navajowhite;
     font-size: 20px;
-    font-style: italic;
+    background-image: radial-gradient(navajowhite, burlywood, sandybrown);
 }
 
 #splash-start {
     margin-top: 10px;
+    background-image: radial-gradient(navajowhite, burlywood, sandybrown);
 }
+
+/* #splash-middle {
+    background-image: radial-gradient(navajowhite, burlywood, sandybrown);
+}
+
+#splash-middles {
+    background-image: radial-gradient(navajowhite, burlywood, sandybrown);
+}
+
+#splash-middle3 {
+    background-image: radial-gradient(navajowhite, burlywood, sandybrown);
+}
+
+#splash-end {
+    background-image: radial-gradient(navajowhite, burlywood, sandybrown);
+} */
