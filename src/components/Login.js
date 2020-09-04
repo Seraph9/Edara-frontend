@@ -40,7 +40,8 @@ function Login() {
         const email = emailInput.value;
         const password = passwordInput.value;
         let body = { email, password };
-        debugger
+        console.log(email);
+        console.log(password);
         try {
             const res = await fetch('http://localhost:8000/users/token', {
                 method: 'POST',
@@ -64,7 +65,10 @@ function Login() {
             localStorage.setItem('EDARA_ACCESS_TOKEN', token);
             localStorage.setItem('EDARA_CURRENT_USER_ID', id);
             localStorage.setItem('EDARA_CURRENT_CHANNEL_ID', 1);
-
+            console.log(localStorage['EDARA_CURRENT_USER_FULLNAME']);
+            console.log(localStorage['EDARA_ACCESS_TOKEN']);
+            console.log(localStorage['EDARA_CURRENT_USER_ID']);
+            console.log(localStorage['EDARA_CURRENT_CHANNEL_ID']);
             // Redirects user to main page
             window.location.href = '/';
 
@@ -75,6 +79,7 @@ function Login() {
 
     return (
         <>
+            <h2 className='errors-container'></h2>
             <form onSubmit={handleLogin} id='loginform' className='loginform'>
                 <input type='text' placeholder='Enter full name...' style={styles.inputs} />
                 <br />
