@@ -1,8 +1,10 @@
 const initialState = {
-    token: ''
+    isAuthenticated: false,
+    user: undefined,
 };
 
 function authReducer(state = initialState, action) {
+
     return state;
 };
 
