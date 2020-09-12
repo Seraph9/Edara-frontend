@@ -69,8 +69,9 @@ function Login() {
             console.log(localStorage['EDARA_ACCESS_TOKEN']);
             console.log(localStorage['EDARA_CURRENT_USER_ID']);
             console.log(localStorage['EDARA_CURRENT_CHANNEL_ID']);
+            const currentUserId = localStorage.getItem('EDARA_CURRENT_USER_ID');
             // Redirects user to main page
-            window.location.href = '/';
+            window.location.href = `/users/${currentUserId}`;
 
         } catch (err) {
             handleErrors(err);

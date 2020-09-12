@@ -39,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const currentUserId = localStorage.getItem('EDARA_CURRENT_USER_ID');
+const currentUserName = localStorage.getItem('EDARA_CURRENT_USER_FULLNAME');
+
 function NavMenu() {
     const classes = useStyles();
 
@@ -46,6 +49,7 @@ function NavMenu() {
     // const [modalStyle] = React.useState(getModalStyle);
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
+    const [logOut, setLogOut] = React.useState(false);
 
     const handleOpen = () => {
         setOpen(true);
@@ -62,6 +66,19 @@ function NavMenu() {
     const handleClose2 = () => {
         setOpen2(false);
     };
+
+    const handleLogOut = async () => {
+        setLogOut(true);
+        localStorage.clear();
+        try {
+            const res = await fetch(`http://localhost:8000/users/${currentUserId}`, {
+
+                body: JSON.stringify(body),
+            });
+        } catch (err) {
+            console.error(err);
+        };
+    }
 
     const body = (
         <div className={classes.paper}>
@@ -83,6 +100,8 @@ function NavMenu() {
         </div>
     );
 
+
+
     return (
         <>
             <AppBar position="static" className={classes.navbar}>
@@ -93,8 +112,14 @@ function NavMenu() {
                     <Typography variant="h6" className={classes.title}>
                         Edara
                     </Typography>
-                    <Button color="inherit" onClick={handleOpen2}>Signup</Button>
-                    <Button color="inherit" onClick={handleOpen}>Login</Button>
+                    <div>
+                        {currentUserName
+                            ? <><h3>Welcome {currentUserName}!</h3>
+                                <Button color="inherit" onClick={handleLogOut}>Logout</Button></>
+                            : <><Button color="inherit" onClick={handleOpen2}>Signup</Button>
+                                <Button color="inherit" onClick={handleOpen}>Login</Button></>
+                        }
+                    </div>
                     {open && <div>
                         <Modal
                             open={open}
