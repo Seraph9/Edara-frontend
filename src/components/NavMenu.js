@@ -78,6 +78,7 @@ function NavMenu() {
         } catch (err) {
             console.error(err);
         };
+        window.location.href = `/`;
     }
 
     const body = (
