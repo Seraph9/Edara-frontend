@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import Splash from './components/Splash';
+import NotFound from './components/NotFound';
 import store from './store'
 import { Provider } from 'react-redux';
 
@@ -14,6 +15,7 @@ ReactDOM.render(
         <Switch>
           <Route exact path='/' component={Splash} />
           <Route exact path='/users/:id' component={App} />
+          <Route path='*' component={NotFound} />
         </Switch>
         <App />
       </BrowserRouter>
