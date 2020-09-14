@@ -12,7 +12,7 @@ import NavMenu from './components/NavMenu';
 class App extends Component {
 
   state = {
-    isLoggedIn: true,
+    isLoggedIn: false,
   }
 
   onDragEnd = result => {

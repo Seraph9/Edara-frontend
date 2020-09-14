@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -112,6 +113,7 @@ function NavMenu() {
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
                         Edara
+                        {/* <NavLink to='/users/6' activeClassName='is-selected'>New product</NavLink> */}
                     </Typography>
                     <div>
                         {currentUserName

@@ -29,16 +29,23 @@ function Signup() {
     const demoLogIn = document.getElementById('demoUser');
 
     const handleSignup = async e => {
-        //e.preventDefault();
+        e.preventDefault();
 
         //Grabs form inputs from the login form
-        const formData = new FormData(signUpForm);
-        const email = formData.get("email");
-        const password = formData.get("password");
-        const body = { email, password };
+        const fullNameInput = document.getElementById('fullNameInput');
+        const emailInput = document.getElementById('emailInput');
+        const passwordInput = document.getElementById('passwordInput');
+        // const formData = new FormData(loginform);
+        const fullName = fullNameInput.value;
+        const email = emailInput.value;
+        const password = passwordInput.value;
+        let body = { fullName, email, password };
+        console.log(fullName);
+        console.log(email);
+        console.log(password);
 
         try {
-            const res = await fetch('http://localhost:8000/users/token', {
+            const res = await fetch('http://localhost:8000/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -59,10 +66,15 @@ function Signup() {
             localStorage.setItem('EDARA_CURRENT_USER_FULLNAME', name);
             localStorage.setItem('EDARA_ACCESS_TOKEN', token);
             localStorage.setItem('EDARA_CURRENT_USER_ID', id);
-            localStorage.setItem('EDARA_CURRENT_CHANNEL_ID', 1);
+
+            console.log(localStorage.getItem('EDARA_CURRENT_USER_FULLNAME'));
+            console.log(localStorage.getItem('EDARA_ACCESS_TOKEN'));
+            console.log(localStorage.getItem('EDARA_CURRENT_USER_ID'));
+
+            const currentUserId = localStorage.getItem('EDARA_CURRENT_USER_ID');
 
             // Redirects user to main page
-            window.location.href = '/';
+            window.location.href = `/users/${currentUserId}`;
 
         } catch (err) {
             handleErrors(err);
@@ -70,14 +82,15 @@ function Signup() {
     }
     return (
         <>
-            <form onSubmit={handleSignup} className='signupform'>
-                <input type='text' placeholder='Enter full name...' style={styles.inputs} />
+            <h2 className='errors-container'></h2>
+            <form onSubmit={handleSignup} id='signupform' className='signupform'>
+                <input id='fullNameInput' type='text' placeholder='Enter full name...' style={styles.inputs} />
                 <br />
-                <input type='email' placeholder='Enter email...' style={styles.inputs} />
+                <input id='emailInput' type='email' placeholder='Enter email...' style={styles.inputs} />
                 <br />
-                <input type='password' placeholder='Enter password...' style={styles.inputs} />
+                <input id='passwordInput' type='password' placeholder='Enter password...' style={styles.inputs} />
                 <br />
-                <Button className={classes.button}>Sign Up</Button>
+                <Button type='submit' className={classes.button}>Sign Up</Button>
             </form>
             <Button className={classes.button}>Demo User</Button>
             <br />
