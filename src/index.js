@@ -8,6 +8,8 @@ import NotFound from './components/NotFound';
 import store from './store'
 import { Provider } from 'react-redux';
 
+const currentUserId = localStorage.getItem('EDARA_CURRENT_USER_ID');
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -17,7 +19,6 @@ ReactDOM.render(
           <Route exact path='/users/:id' component={App} />
           <Route path='*' component={NotFound} />
         </Switch>
-        <App />
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,

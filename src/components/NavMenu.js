@@ -38,6 +38,12 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Roboto, Helvetica, Arial, sans- serif',
         outline: 0
     },
+    userName: {
+        display: "inline",
+        fontFamily: 'Roboto, Helvetica, Arial, sans- serif',
+        color: '#034f84',
+        marginRight: '10px'
+    }
 }));
 
 const currentUserId = localStorage.getItem('EDARA_CURRENT_USER_ID');
@@ -71,14 +77,14 @@ function NavMenu() {
     const handleLogOut = async () => {
         setLogOut(true);
         localStorage.clear();
-        try {
-            const res = await fetch(`http://localhost:8000/users/${currentUserId}`, {
+        // try {
+        //     const res = await fetch(`http://localhost:8000/users/${currentUserId}`, {
 
-                body: JSON.stringify(body),
-            });
-        } catch (err) {
-            console.error(err);
-        };
+        //         body: JSON.stringify(body),
+        //     });
+        // } catch (err) {
+        //     console.error(err);
+        // };
         window.location.href = `/`;
     }
 
@@ -117,7 +123,7 @@ function NavMenu() {
                     </Typography>
                     <div>
                         {currentUserName
-                            ? <><h3>Welcome {currentUserName}!</h3>
+                            ? <><h3 className={classes.userName}>Welcome {currentUserName}!</h3>
                                 <Button color="inherit" onClick={handleLogOut}>Logout</Button></>
                             : <><Button color="inherit" onClick={handleOpen2}>Signup</Button>
                                 <Button color="inherit" onClick={handleOpen}>Login</Button></>
