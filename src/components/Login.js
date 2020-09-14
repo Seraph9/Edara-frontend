@@ -64,9 +64,11 @@ function Login() {
             localStorage.setItem('EDARA_CURRENT_USER_FULLNAME', name);
             localStorage.setItem('EDARA_ACCESS_TOKEN', token);
             localStorage.setItem('EDARA_CURRENT_USER_ID', id);
+
             console.log(localStorage['EDARA_CURRENT_USER_FULLNAME']);
             console.log(localStorage['EDARA_ACCESS_TOKEN']);
             console.log(localStorage['EDARA_CURRENT_USER_ID']);
+
             const currentUserId = localStorage.getItem('EDARA_CURRENT_USER_ID');
             // Redirects user to main page
             window.location.href = `/users/${currentUserId}`;
@@ -80,8 +82,8 @@ function Login() {
         <>
             <h2 className='errors-container'></h2>
             <form onSubmit={handleLogin} id='loginform' className='loginform'>
-                <input type='text' placeholder='Enter full name...' style={styles.inputs} />
-                <br />
+                {/* <input type='text' placeholder='Enter full name...' style={styles.inputs} />
+                <br /> */}
                 <input id='emailInput' type='email' placeholder='Enter email...' style={styles.inputs} />
                 <br />
                 <input id='passwordInput' type='password' placeholder='Enter password...' style={styles.inputs} />
