@@ -131,18 +131,20 @@ class AddButtons extends React.Component {
         const { id, title } = this.props.list;
         const body = { id, title };
         try {
-            const res = await fetch('http://localhost:8000/lists/', {
+            const res = await fetch('http://localhost:8000/lists', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(body)
             })
-            console.log('res:', res);
-            // const data = await res.json();
-            // console.log('data:', data);
+            console.log('res: ', res);
+            const data = await res.json();
+            console.log('List data: ', data);
+            const { list } = data;
+            console.log('new list title: ', list.title)
         } catch (err) {
             console.error(err.message);
         }
-    }
+    };
 
     render() {
         //console.log(this.props);

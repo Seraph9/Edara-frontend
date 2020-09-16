@@ -15,6 +15,29 @@ class Board extends Component {
         isLoggedIn: true,
     }
 
+    // const [lists, setLists] = useState();
+
+    // getLists = async () => {
+    //     try {
+    //         const response = await fetch('http://localhost:8000/lists', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             }
+    //         });
+    //         const data = await response.json();
+    //         console.log("List Data: ", data);
+    //         //setLists(data);
+
+    //     } catch (err) {
+    //         console.error(err.message);
+    //     }
+    // };
+
+    // useEffect(() => {
+    //     getLists();
+    // }, []);
+
     onDragEnd = result => {
         // re-ordering logic for drag-n-drop persistence
         const { destination, source, draggableId, type } = result;

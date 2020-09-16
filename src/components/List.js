@@ -6,24 +6,6 @@ import { createList } from '../actions';
 
 function List({ title, cards, listID, index }) {
 
-    // const [lists, setLists] = useState();
-
-    // const getLists = async () => {
-    //     try {
-    //         const response = await fetch('http://localhost:8000/');
-    //         const data = await response.json();
-    //         setLists(data);
-
-    //     } catch (err) {
-    //         console.error(err.message);
-    //     }
-
-    // }
-
-    // useEffect(() => {
-    //     getLists();
-    // }, []);
-
 
     return (
         <Draggable draggableId={String(listID)} index={index}>
