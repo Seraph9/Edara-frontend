@@ -107,13 +107,29 @@ class AddButtons extends React.Component {
     //     return;
     // }
 
-    handleAddCard = () => {
+    handleAddCard = async () => {
         const { dispatch, listID } = this.props;
         const { text } = this.state;
 
         if (text) {
             this.setState({ text: '' });
             dispatch(createCard(text, listID));
+        }
+
+        const body = { listID, text };
+        try {
+            const res = await fetch(`http://localhost:8000/lists/${listID}/notes`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+            })
+            console.log('res: ', res);
+            const data = await res.json();
+            console.log('Note data: ', data);
+            const { note } = data;
+            console.log('new note text: ', note.note)
+        } catch (err) {
+            console.error(err.message);
         }
     };
 

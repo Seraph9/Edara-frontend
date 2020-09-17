@@ -6,6 +6,7 @@ let cardID = 6;
 const initialState = [
     {
         id: `list-${1}`,
+        userId: 1,
         title: 'Task Number 1: Trello-Clone Project Management App',
         cards: [
             {
@@ -20,6 +21,7 @@ const initialState = [
     },
     {
         id: `list-${2}`,
+        userId: 1,
         title: 'Task Number 2: Trello-Clone Project Management App',
         cards: [
             {
