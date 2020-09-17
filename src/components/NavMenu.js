@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     },
     navbar: {
         backgroundColor: 'SandyBrown',
+        // width: '100vw'
     },
     menuButton: {
         marginRight: theme.spacing(2),
