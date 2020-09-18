@@ -40,9 +40,13 @@ const initialState = [
     }
 ];
 
-const listsReducer = (state = initialState, action) => {
+const listsReducer = async (state = initialState, action) => {
     switch (action.type) {
         case ADD_LIST:
+            // const res = await fetch('http://localhost:8000/lists');
+            // console.log('response in listsReducer is: ', res);
+            // const data = res.json();
+            // console.log('data in listsReducer is: ', data);
             const newList = {
                 title: action.payload,
                 cards: [],
