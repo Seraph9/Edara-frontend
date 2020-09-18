@@ -44,10 +44,12 @@ const listsReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_LIST:
             // if you make this reducer function async then lists.map will not be a function
-            // const res = await fetch('http://localhost:8000/lists');
-            // console.log('response in listsReducer is: ', res);
-            // const data = res.json();
-            // console.log('data in listsReducer is: ', data);
+            fetch('http://localhost:8000/lists')
+                .then(res => res.json())
+                .then(data => console.log('data in listsReducer is: ', data));
+
+            //console.log('response in listsReducer is: ', res)
+            ;
             const newList = {
                 title: action.payload,
                 cards: [],
