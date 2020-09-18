@@ -108,14 +108,16 @@ class AddButtons extends React.Component {
     // }
 
     handleAddCard = async () => {
-        const { dispatch, listID } = this.props;
+        let { dispatch, listID } = this.props;
+
         const { text } = this.state;
         const userId = localStorage.getItem('EDARA_CURRENT_USER_ID');
         if (text) {
             this.setState({ text: '' });
             dispatch(createCard(text, listID));
         }
-
+        listID = listID.substring(5, 6);
+        console.log("listID is: ", listID);
         const body = { text, userId };
         try {
             const res = await fetch(`http://localhost:8000/lists/${listID}/notes`, {
@@ -140,13 +142,14 @@ class AddButtons extends React.Component {
         const { dispatch } = this.props;
         const { text } = this.state;
         const userId = localStorage.getItem('EDARA_CURRENT_USER_ID');
+        console.log("userId is: ", userId);
 
         if (text) {
             this.setState({ text: '' });
             dispatch(createList(text));
         }
         const { id, title } = this.props.list;
-        const body = { id, userId, title };
+        const body = { userId, title };
         try {
             const res = await fetch('http://localhost:8000/lists', {
                 method: 'POST',
