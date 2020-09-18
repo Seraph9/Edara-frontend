@@ -40,9 +40,10 @@ const initialState = [
     }
 ];
 
-const listsReducer = async (state = initialState, action) => {
+const listsReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_LIST:
+            // if you make this reducer function async then lists.map will not be a function
             // const res = await fetch('http://localhost:8000/lists');
             // console.log('response in listsReducer is: ', res);
             // const data = res.json();

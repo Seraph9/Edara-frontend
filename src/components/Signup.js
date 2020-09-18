@@ -74,7 +74,8 @@ function Signup() {
             const currentUserId = localStorage.getItem('EDARA_CURRENT_USER_ID');
 
             // Redirects user to main page
-            window.location.href = `/users/${currentUserId}`;
+            //window.location.href = `/users/${currentUserId}`;
+            window.location.href = `/lists`;
 
         } catch (err) {
             handleErrors(err);

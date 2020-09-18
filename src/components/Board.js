@@ -62,7 +62,7 @@ class Board extends Component {
 
     render() {
         const { lists } = this.props;
-        //console.log(lists);
+        console.log(lists);
         return this.state.isLoggedIn ? (
             <DragDropContext onDragEnd={this.onDragEnd}>
                 <NavMenu style={styles.navMenu} />
@@ -73,7 +73,7 @@ class Board extends Component {
                             {...provided.droppableProps}
                             style={styles.listsContainer}
                         >
-                            {/* <Board /> */}
+                            {/* {Array.from(lists).map((list, index) => { */}
                             {lists.map((list, index) => {
                                 //console.log(list);
                                 return (
@@ -92,8 +92,7 @@ class Board extends Component {
                     )}
                 </Droppable>
             </DragDropContext>
-        )
-            : <Splash />
+        ) : <Splash />
     }
 };
 
@@ -107,7 +106,7 @@ const styles = {
 
 const mapStateToProps = state => ({
     lists: state.lists
-})
+});
 
 export default connect(mapStateToProps)(Board);
 // import React, { useEffect } from 'react';

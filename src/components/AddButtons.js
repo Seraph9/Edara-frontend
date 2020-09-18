@@ -116,11 +116,11 @@ class AddButtons extends React.Component {
             this.setState({ text: '' });
             dispatch(createCard(text, listID));
         }
-        listID = listID.substring(5, 6);
+        const listId = listID.substring(5, 6);
         console.log("listID is: ", listID);
         const body = { text, userId };
         try {
-            const res = await fetch(`http://localhost:8000/lists/${listID}/notes`, {
+            const res = await fetch(`http://localhost:8000/lists/${listId}/notes`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(body)
