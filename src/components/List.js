@@ -3,9 +3,10 @@ import Cards from './Cards';
 import AddButtons from './AddButtons';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { createList } from '../actions';
+import { connect, useDispatch } from 'react-redux';
 
-function List({ title, cards, listID, index }) {
-
+function List(props) {
+    const { title, cards, listID, index, lists } = props;
 
     return (
         <Draggable draggableId={String(listID)} index={index}>
@@ -22,7 +23,7 @@ function List({ title, cards, listID, index }) {
                     <Droppable droppableId={String(listID)} type='card'>
                         {provided => (
                             <div ref={provided.innerRef} {...provided.droppableProps}>
-                                <h4>{title}</h4>
+                                {lists[2] ? <h4>{lists[2].title}</h4> : "loading"}
                                 {cards.map((card, index) => <Cards key={card.id} index={index} id={card.id} text={card.text} />)}
                                 {provided.placeholder}
                                 <AddButtons listID={listID} />
@@ -49,4 +50,8 @@ const styles = {
     }
 }
 
-export default List;
+const mapStateToProps = state => ({
+    lists: state.lists
+});
+
+export default connect(mapStateToProps)(List);

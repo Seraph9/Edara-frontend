@@ -139,7 +139,7 @@ class AddButtons extends React.Component {
 
     handleAddList = async e => {
         e.preventDefault();
-        const { dispatch, lists } = this.props;
+        const { dispatch } = this.props;
         const { text } = this.state;
         const userId = localStorage.getItem('EDARA_CURRENT_USER_ID');
         console.log("userId is: ", userId);
@@ -158,6 +158,8 @@ class AddButtons extends React.Component {
                 const { list } = data;
                 console.log('new list title: ', list.title);
                 dispatch(createList(list.title));
+                const { lists } = this.props;
+                console.log("store-state lists: ", lists);
                 this.setState({ text: lists });
             } catch (err) {
                 console.error(err.message);
@@ -192,14 +194,14 @@ const styles = {
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    dispatchCard: (text, listID) => {
-        dispatch(createCard(text, listID))
-    },
-    dispatchList: (text) => {
-        dispatch(createList(text))
-    }
-});
+// const mapDispatchToProps = dispatch => ({
+//     createCard: (text, listID) => {
+//         dispatch(createCard(text, listID))
+//     },
+//     createList: title => {
+//         dispatch(createList(title))
+//     }
+// });
 
 const mapStateToProps = state => ({
     lists: state.lists
