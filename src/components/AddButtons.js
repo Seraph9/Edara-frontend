@@ -139,31 +139,34 @@ class AddButtons extends React.Component {
 
     handleAddList = async e => {
         e.preventDefault();
-        const { dispatch } = this.props;
+        const { dispatch, lists } = this.props;
         const { text } = this.state;
         const userId = localStorage.getItem('EDARA_CURRENT_USER_ID');
         console.log("userId is: ", userId);
 
         if (text) {
-            this.setState({ text: '' });
-            dispatch(createList(text));
+            const body = { userId, title: text };
+            try {
+                const res = await fetch('http://localhost:8000/lists', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                })
+                console.log('res: ', res);
+                const data = await res.json();
+                console.log('List data: ', data);
+                const { list } = data;
+                console.log('new list title: ', list.title);
+                dispatch(createList(list.title));
+                this.setState({ text: lists });
+            } catch (err) {
+                console.error(err.message);
+            }
+
+
         }
         const { id, title } = this.props.list;
-        const body = { userId, title };
-        try {
-            const res = await fetch('http://localhost:8000/lists', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(body)
-            })
-            console.log('res: ', res);
-            const data = await res.json();
-            console.log('List data: ', data);
-            const { list } = data;
-            console.log('new list title: ', list.title)
-        } catch (err) {
-            console.error(err.message);
-        }
+
     };
 
     render() {
@@ -189,10 +192,17 @@ const styles = {
     }
 }
 
-// const mapDispatchToProps = dispatch => ({
-//     dispatch: (text, listID) => {
-//         dispatch(createCard(text, listID))
-//     }
-// })
+const mapDispatchToProps = dispatch => ({
+    dispatchCard: (text, listID) => {
+        dispatch(createCard(text, listID))
+    },
+    dispatchList: (text) => {
+        dispatch(createList(text))
+    }
+});
 
-export default connect()(AddButtons);
+const mapStateToProps = state => ({
+    lists: state.lists
+});
+
+export default connect(mapStateToProps)(AddButtons);
