@@ -23,8 +23,9 @@ function List(props) {
                     <Droppable droppableId={String(listID)} type='card'>
                         {provided => (
                             <div ref={provided.innerRef} {...provided.droppableProps}>
-                                {lists[2] ? <h4>{lists[2].title}</h4> : "loading"}
-                                {cards.map((card, index) => <Cards key={card.id} index={index} id={card.id} text={card.text} />)}
+                                <h4>{title}</h4>
+                                {/* {lists[2] ? <h4>{lists[2].title}</h4> : "loading"} */}
+                                {cards ? cards.map((card, index) => <Cards key={card.id} index={index} id={card.id} text={card.text} />) : "loading"}
                                 {provided.placeholder}
                                 <AddButtons listID={listID} />
                             </div>

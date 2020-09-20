@@ -17,22 +17,25 @@ class Board extends Component {
 
     // const [lists, setLists] = useState();
 
-    // getLists = async () => {
-    //     try {
-    //         const response = await fetch('http://localhost:8000/lists', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             }
-    //         });
-    //         const data = await response.json();
-    //         console.log("List Data: ", data);
-    //         //setLists(data);
+    componentDidMount() {
+        // getLists = async () => {
+        try {
+            fetch('http://localhost:8000/lists')
+                .then(response => response.json())
+                .then(data => {
+                    console.log("data get fetch in board.js: ", data);
+                    //data.map(list => this.props.dispatch(list));
 
-    //     } catch (err) {
-    //         console.error(err.message);
-    //     }
-    // };
+                })
+            //setLists(data);
+
+
+        } catch (err) {
+            console.error(err.message);
+        }
+        // };
+    }
+
 
     // useEffect(() => {
     //     getLists();
@@ -81,7 +84,7 @@ class Board extends Component {
                                         key={list.id}
                                         listID={list.id}
                                         title={list.title}
-                                        cards={list.cards}
+                                        // cards={list.cards}
                                         index={index}
                                     />
                                 )
