@@ -7,6 +7,7 @@ import List from './List';
 import AddButtons from './AddButtons';
 import Splash from './Splash';
 import NavMenu from './NavMenu';
+import store from '../store';
 
 
 class Board extends Component {
@@ -20,6 +21,8 @@ class Board extends Component {
     componentDidMount() {
         // getLists = async () => {
         try {
+            const currentReduxStoreState = store.getState();
+            console.log("Current Redux Store State: ", currentReduxStoreState);
             fetch('http://localhost:8000/lists')
                 .then(response => response.json())
                 .then(data => {

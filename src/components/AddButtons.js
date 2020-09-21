@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import TextareaAutosize from 'react-textarea-autosize';
 import { connect, useDispatch } from 'react-redux';
 import { createList, createCard } from '../actions';
+import store from '../store';
 
 
 class AddButtons extends React.Component {
@@ -160,7 +161,8 @@ class AddButtons extends React.Component {
                 dispatch(createList(list.title));
                 const { lists } = this.props;
                 console.log("store-state lists: ", lists);
-                this.setState({ text: lists });
+                console.log("redux current store-state: ", store.getState());
+                //this.setState({ text: lists });
             } catch (err) {
                 console.error(err.message);
             }

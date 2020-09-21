@@ -8,7 +8,7 @@ import store from './store'
 
 const currentUserId = localStorage.getItem('EDARA_CURRENT_USER_ID');
 
-ReactDOM.render(
+const render = () => ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <App />
@@ -16,3 +16,7 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+render();
+
+store.subscribe(render);
