@@ -28,7 +28,8 @@ const Cards = ({ text, id, index }) => {
 
 const styles = {
     cardContainer: {
-        marginBottom: 8
+        marginBottom: 8,
+
     },
 };
 

@@ -21,10 +21,10 @@ function EditList(props) {
     return (
         <Button
             variant='contained'
-            style={{ color: 'white', backgroundColor: 'orange' }}
+            style={{ color: 'white', backgroundColor: 'orange', marginLeft: '5px', marginBottom: '8px' }}
             onMouseDown={handleEditList}
         // onClick={list ? this.createList : this.createCard}
-        >Edit</Button>
+        >Edit List</Button>
     )
 };
 
