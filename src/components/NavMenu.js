@@ -125,9 +125,9 @@ function NavMenu() {
                     <div>
                         {currentUserName
                             ? <><h3 className={classes.userName}>Welcome {currentUserName}!</h3>
-                                <Button color="inherit" onClick={handleLogOut}>Logout</Button></>
-                            : <><Button color="inherit" onClick={handleOpen2}>Signup</Button>
-                                <Button color="inherit" onClick={handleOpen}>Login</Button></>
+                                <Button color="inherit" onClick={handleLogOut}>Log-out</Button></>
+                            : <><Button color="inherit" onClick={handleOpen2}>Sign-up</Button>
+                                <Button color="inherit" onClick={handleOpen}>Log-in</Button></>
                         }
                     </div>
                     {open && <div>
