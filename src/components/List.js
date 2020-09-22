@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Cards from './Cards';
 import AddButtons from './AddButtons';
 import DeleteList from './DeleteList';
+import EditList from './EditList';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { createList } from '../actions';
 import { connect, useDispatch } from 'react-redux';
@@ -24,7 +25,7 @@ function List(props) {
                     <Droppable droppableId={String(listID)} type='card'>
                         {provided => (
                             <div ref={provided.innerRef} {...provided.droppableProps}>
-                                <h4>{title}</h4><DeleteList listID={listID} />
+                                <h4>{title}</h4><DeleteList listID={listID} /><EditList listID={listID} />
                                 {/* {lists[2] ? <h4>{lists[2].title}</h4> : "loading"} */}
                                 {cards ? cards.map((card, index) => <Cards key={card.id} index={index} id={card.id} text={card.text} />) : "loading"}
                                 {provided.placeholder}

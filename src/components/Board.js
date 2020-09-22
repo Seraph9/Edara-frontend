@@ -8,6 +8,7 @@ import AddButtons from './AddButtons';
 import Splash from './Splash';
 import NavMenu from './NavMenu';
 import store from '../store';
+import { loadLists } from '../actions/listsActions';
 
 
 class Board extends Component {
@@ -27,6 +28,7 @@ class Board extends Component {
                 .then(response => response.json())
                 .then(data => {
                     console.log("data get fetch in board.js: ", data);
+                    this.props.dispatch(loadLists(data));
                     //data.map(list => this.props.dispatch(list));
 
                 })
@@ -68,7 +70,7 @@ class Board extends Component {
 
     render() {
         const { lists } = this.props;
-        console.log(lists);
+        console.log("lists in current state: ", lists);
         return this.state.isLoggedIn ? (
             <DragDropContext onDragEnd={this.onDragEnd}>
                 <NavMenu style={styles.navMenu} />
@@ -80,7 +82,7 @@ class Board extends Component {
                             style={styles.listsContainer}
                         >
                             {/* {Array.from(lists).map((list, index) => { */}
-                            {lists.map((list, index) => {
+                            {lists ? lists.map((list, index) => {
                                 //console.log(list);
                                 return (
                                     <List
@@ -91,7 +93,7 @@ class Board extends Component {
                                         index={index}
                                     />
                                 )
-                            })}
+                            }) : "loading"}
                             {provided.placeholder}
                             <AddButtons list />
                         </div>

@@ -1,11 +1,23 @@
-import { ADD_CARD, ADD_LIST, DRAGGED, LOAD_LISTS } from '../actions';
+import { ADD_CARD, ADD_LIST, DRAGGED, LOAD_LISTS, loadLists } from '../actions';
+import store from '../store'
+import { connect } from 'react-redux';
 
 let listID = 3;
 let cardID = 6;
 
+// const initialState = (() => {
+//     fetch('http://localhost:8000/lists')
+//         .then(response => response.json())
+//         .then(data => {
+//             console.log("data for initial state is: ", data);
+//             //store.dispatch(loadLists(data));
+//             return data
+//         })
+// })();
+
 const initialState = [
     {
-        id: `list-${1}`,
+        id: 1,
         userId: 1,
         title: 'Task Number 1: Trello-Clone Project Management App',
         cards: [
@@ -20,7 +32,7 @@ const initialState = [
         ]
     },
     {
-        id: `list-${2}`,
+        id: 2,
         userId: 1,
         title: 'Task Number 2: Trello-Clone Project Management App',
         cards: [
@@ -53,7 +65,7 @@ const listsReducer = (state = initialState, action) => {
             const newList = {
                 title: action.payload,
                 cards: [],
-                id: `list-${listID}`
+                id: listID
             };
             listID += 1
             return [...state, newList];
@@ -118,4 +130,9 @@ const listsReducer = (state = initialState, action) => {
     }
 };
 
+// const mapStateToProps = state => ({
+//     lists: state.lists
+// });
+
+// export default connect(mapStateToProps)(listsReducer);
 export default listsReducer;
