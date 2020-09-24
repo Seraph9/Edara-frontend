@@ -108,32 +108,36 @@ class AddButtons extends React.Component {
     //     return;
     // }
 
-    handleAddCard = async () => {
-        let { dispatch, listID } = this.props;
+    handleAddCard = async e => {
+        //console.log('event.current: ', e.currentTarget);
 
+        let { dispatch, lists } = this.props;
+        console.log('this.props in AddButtons.js: ', this.props);
         const { text } = this.state;
+        const listId = lists[0].id;
         const userId = localStorage.getItem('EDARA_CURRENT_USER_ID');
         if (text) {
-            this.setState({ text: '' });
-            dispatch(createCard(text, listID));
+            const body = { userId, note: text };
+            try {
+                const res = await fetch(`http://localhost:8000/lists/${listId}/notes`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                })
+                console.log('res for handleCardAdd: ', res);
+                const data = await res.json();
+                console.log('Note data: ', data);
+                const { newNote } = data;
+                console.log('new note text: ', newNote.note)
+                dispatch(createCard(newNote.note, newNote.listId));
+                this.setState({ text: '' });
+            } catch (err) {
+                console.error(err.message);
+            }
+
+
         }
-        const listId = listID.substring(5, 6);
-        console.log("listID is: ", listID);
-        const body = { text, userId };
-        try {
-            const res = await fetch(`http://localhost:8000/lists/${listId}/notes`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(body)
-            })
-            console.log('res: ', res);
-            const data = await res.json();
-            console.log('Note data: ', data);
-            const { note } = data;
-            console.log('new note text: ', note.note)
-        } catch (err) {
-            console.error(err.message);
-        }
+
     };
 
     // dispatch = useDispatch();
@@ -169,7 +173,7 @@ class AddButtons extends React.Component {
 
 
         }
-        const { id, title } = this.props.list;
+        // const { id, title } = this.props.list; // not needed
 
     };
 

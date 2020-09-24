@@ -9,6 +9,7 @@ import Splash from './Splash';
 import NavMenu from './NavMenu';
 import store from '../store';
 import { loadLists } from '../actions/listsActions';
+import { loadCards } from '../actions/cardsActions';
 
 
 class Board extends Component {
@@ -19,29 +20,66 @@ class Board extends Component {
 
     // const [lists, setLists] = useState();
 
+    // componentDidMount() {
+
+    //     Promise.all([
+    //         fetch('http://localhost:8000/lists'),
+    //         fetch('http://localhost:8000/')
+    //     ]).then(responses => {
+    //         return Promise.all(responses.map(res => {
+    //             return res.json();
+    //         }));
+    //     }).then(data => {
+    //         console.log("data get fetch in board.js: ", data);
+    //         this.props.dispatch(loadLists(data));
+    //         console.log("fetch notes in board:", data); // data is an array of objects
+    //         this.props.dispatch(loadCards(data));
+    //     }).catch(error => {
+    //         console.log(error);
+    //     });
+
+    // }
+
     componentDidMount() {
-        // getLists = async () => {
-        try {
-            const currentReduxStoreState = store.getState();
-            console.log("Current Redux Store State: ", currentReduxStoreState);
-            fetch('http://localhost:8000/lists')
-                .then(response => response.json())
-                .then(data => {
-                    console.log("data get fetch in board.js: ", data);
-                    this.props.dispatch(loadLists(data));
-                    //data.map(list => this.props.dispatch(list));
 
-                })
-            //setLists(data);
+        fetch('http://localhost:8000/lists')
+            .then(response => response.json())
+            .then(data => {
+                console.log("lists get fetch in board.js: ", data);
+                this.props.dispatch(loadLists(data));
+                //data.map(list => this.props.dispatch(list));
+            })
+            .catch(error => console.error(error));
 
-
-        } catch (err) {
-            console.error(err.message);
-        }
-        // };
+        // fetch('http://localhost:8000/')
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         console.log("cards get fetch in board.js: ", data);
+        //         this.props.dispatch(loadCards(data));
+        //     })
+        //     .catch(error => console.error(error));
     }
 
+    // const currentReduxStoreState = store.getState();
+    // console.log("Current Redux Store State: ", currentReduxStoreState);
+    // fetch('http://localhost:8000/lists')
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         console.log("data get fetch in board.js: ", data);
+    //         this.props.dispatch(loadLists(data));
+    //         //data.map(list => this.props.dispatch(list));
+    //         fetch('http://localhost:8000/')
+    //             .then(res => res.json())
+    //             .then(data => {
+    //                 console.log("fetch notes in board:", data); // data is an array of objects
+    //                 this.props.dispatch(loadCards(data));
+    //             })
+    //             .catch(error => {
+    //                 console.error(error);
+    //             })
+    //     })
 
+    //setLists(data);
     // useEffect(() => {
     //     getLists();
     // }, []);
@@ -70,7 +108,7 @@ class Board extends Component {
 
     render() {
         const { lists } = this.props;
-        console.log("lists in current state: ", lists);
+        console.log("lists of current state in board.js: ", lists);
         return this.state.isLoggedIn ? (
             <DragDropContext onDragEnd={this.onDragEnd}>
                 <NavMenu style={styles.navMenu} />
@@ -83,13 +121,13 @@ class Board extends Component {
                         >
                             {/* {Array.from(lists).map((list, index) => { */}
                             {lists ? lists.map((list, index) => {
-                                //console.log(list);
+                                console.log("list in board.js: ", list);
                                 return (
                                     <List
                                         key={list.id}
                                         listID={list.id}
                                         title={list.title}
-                                        // cards={list.cards}
+                                        cards={list.cards}
                                         index={index}
                                     />
                                 )

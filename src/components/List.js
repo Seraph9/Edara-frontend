@@ -9,6 +9,8 @@ import { connect, useDispatch } from 'react-redux';
 
 function List(props) {
     const { title, cards, listID, index, lists } = props;
+    console.log('cards in list.js: ', cards);
+    console.log('lists in list.js: ', lists)
 
     return (
         <Draggable draggableId={String(listID)} index={index}>

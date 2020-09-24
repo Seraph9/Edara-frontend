@@ -1,4 +1,4 @@
-import { ADD_CARD, ADD_LIST, DRAGGED, LOAD_LISTS, loadLists } from '../actions';
+import { ADD_CARD, ADD_LIST, DRAGGED, LOAD_LISTS, LOAD_CARDS, loadLists } from '../actions';
 import store from '../store'
 import { connect } from 'react-redux';
 
@@ -72,15 +72,15 @@ const listsReducer = (state = initialState, action) => {
         case ADD_CARD: { // start with braces to give newState variable its own context so you can redeclare it again below
             const newCard = {
                 text: action.payload.text,
-                id: action.payload.id
+                id: action.payload.listID
             };
             //cardID += 1;
             const newState = state.map(list => {
                 if (list.id === action.payload.listID) {
-                    console.log(list);
+                    console.log("list in ADD_CARD listsReducer:", list);
                     return {
                         ...list,
-                        cards: [...list.cards, newCard]
+                        cards: [newCard]
                     }
                 } else {
                     return list;
@@ -126,6 +126,18 @@ const listsReducer = (state = initialState, action) => {
             return newState;
         case LOAD_LISTS:
             return [...action.payload]
+        case LOAD_CARDS: {
+            const newState = state.map(list => {
+                list['cards'] = [...action.payload]
+            })
+            // if (list.id === action.payload.listID) {
+            //     console.log("list in ADD_CARD listsReducer:", list);
+            //     return {
+            //         ...list,
+            //         cards: [newCard]
+            //     }
+            return newState;
+        }
         default:
             return state;
     }
