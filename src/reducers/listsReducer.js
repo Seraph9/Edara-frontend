@@ -2,8 +2,8 @@ import { ADD_CARD, ADD_LIST, DRAGGED, LOAD_LISTS, loadLists } from '../actions';
 import store from '../store'
 import { connect } from 'react-redux';
 
-let listID = 3;
-let cardID = 6;
+//let listID = 3;
+// let cardID = 6;
 
 // const initialState = (() => {
 //     fetch('http://localhost:8000/lists')
@@ -16,40 +16,40 @@ let cardID = 6;
 // })();
 
 const initialState = [
-    {
-        id: 1,
-        userId: 1,
-        title: 'Task Number 1: Trello-Clone Project Management App',
-        cards: [
-            {
-                id: `card-${1}`,
-                text: 'List Column Component',
-            },
-            {
-                id: `card-${2}`,
-                text: 'Card for tasks placed within a list column component',
-            }
-        ]
-    },
-    {
-        id: 2,
-        userId: 1,
-        title: 'Task Number 2: Trello-Clone Project Management App',
-        cards: [
-            {
-                id: `card-${3}`,
-                text: 'Making lists appear in columns',
-            },
-            {
-                id: `card-${4}`,
-                text: 'Styling lists',
-            },
-            {
-                id: `card-${5}`,
-                text: 'Backend coming up!',
-            }
-        ]
-    }
+    // {
+    //     id: 1,
+    //     userId: 1,
+    //     title: 'Task Number 1: Trello-Clone Project Management App',
+    //     cards: [
+    //         {
+    //             id: `card-${1}`,
+    //             text: 'List Column Component',
+    //         },
+    //         {
+    //             id: `card-${2}`,
+    //             text: 'Card for tasks placed within a list column component',
+    //         }
+    //     ]
+    // },
+    // {
+    //     id: 2,
+    //     userId: 1,
+    //     title: 'Task Number 2: Trello-Clone Project Management App',
+    //     cards: [
+    //         {
+    //             id: `card-${3}`,
+    //             text: 'Making lists appear in columns',
+    //         },
+    //         {
+    //             id: `card-${4}`,
+    //             text: 'Styling lists',
+    //         },
+    //         {
+    //             id: `card-${5}`,
+    //             text: 'Backend coming up!',
+    //         }
+    //     ]
+    // }
 ];
 
 const listsReducer = (state = initialState, action) => {
@@ -65,18 +65,19 @@ const listsReducer = (state = initialState, action) => {
             const newList = {
                 title: action.payload,
                 cards: [],
-                id: listID
+                id: action.payload.id
             };
-            listID += 1
+            //listID += 1
             return [...state, newList];
         case ADD_CARD: { // start with braces to give newState variable its own context so you can redeclare it again below
             const newCard = {
                 text: action.payload.text,
-                id: `card-${cardID}`
+                id: action.payload.id
             };
-            cardID += 1;
+            //cardID += 1;
             const newState = state.map(list => {
                 if (list.id === action.payload.listID) {
+                    console.log(list);
                     return {
                         ...list,
                         cards: [...list.cards, newCard]

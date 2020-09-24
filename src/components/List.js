@@ -27,7 +27,7 @@ function List(props) {
                             <div ref={provided.innerRef} {...provided.droppableProps}>
                                 <h4>{title}</h4><DeleteList listID={listID} /><EditList listID={listID} />
                                 {/* {lists[2] ? <h4>{lists[2].title}</h4> : "loading"} */}
-                                {cards ? cards.map((card, index) => <Cards key={card.id} index={index} id={card.id} text={card.text} />) : "loading"}
+                                {cards ? cards.map((card, index) => (<Cards key={card.id} index={index} id={card.id} text={card.text} />)) : "loading"}
                                 {provided.placeholder}
                                 <AddButtons listID={listID} />
                             </div>
