@@ -114,7 +114,8 @@ class AddButtons extends React.Component {
         let { dispatch, lists } = this.props;
         console.log('this.props in AddButtons.js: ', this.props);
         const { text } = this.state;
-        const listId = lists[0].id;
+        let listId = lists[0].id;
+        //lists ? lists.map(list => {if (// if current selected list's id matches the list.id during mapping then only set that list.id to the variable listId to be sent as route parameter. listId = list.id) : 'No lists!';
         const userId = localStorage.getItem('EDARA_CURRENT_USER_ID');
         if (text) {
             const body = { userId, note: text };
