@@ -151,7 +151,8 @@ const styles = {
 }
 
 const mapStateToProps = state => ({
-    lists: state.lists
+    lists: state.lists,
+    cards: state.cards
 });
 
 export default connect(mapStateToProps)(Board);

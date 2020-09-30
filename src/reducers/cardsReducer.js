@@ -1,0 +1,43 @@
+import { ADD_CARD, DRAGGED, LOAD_CARDS, loadCards } from '../actions';
+
+const initialState = [];
+
+const cardsReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case ADD_CARD: { // start with braces to give newState variable its own context so you can redeclare it again below
+            const newCard = {
+                text: action.payload.text,
+                id: action.payload.listID
+            };
+            //cardID += 1;
+            const newState = state.map(list => {
+                if (list.id === action.payload.listID) {
+                    console.log("list in ADD_CARD listsReducer:", list);
+                    return {
+                        ...list,
+                        cards: [newCard]
+                    }
+                } else {
+                    return list;
+                }
+            });
+            return newState;
+        }
+        case LOAD_CARDS: {
+            const newState = state.map(list => {
+                list['cards'] = [...action.payload]
+            })
+            // if (list.id === action.payload.listID) {
+            //     console.log("list in ADD_CARD listsReducer:", list);
+            //     return {
+            //         ...list,
+            //         cards: [newCard]
+            //     }
+            return newState;
+        }
+        default:
+            return state;
+    }
+};
+
+export default cardsReducer;
