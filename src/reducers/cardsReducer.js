@@ -1,6 +1,6 @@
 import { ADD_CARD, DRAGGED, LOAD_CARDS, loadCards } from '../actions';
 
-const initialState = [];
+const initialState = []; // state is empty so what am I mapping over below?
 
 const cardsReducer = (state = initialState, action) => {
     switch (action.type) {

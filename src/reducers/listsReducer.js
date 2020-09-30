@@ -69,25 +69,25 @@ const listsReducer = (state = initialState, action) => {
             };
             //listID += 1
             return [...state, newList];
-        case ADD_CARD: { // start with braces to give newState variable its own context so you can redeclare it again below
-            const newCard = {
-                text: action.payload.text,
-                id: action.payload.listID
-            };
-            //cardID += 1;
-            const newState = state.map(list => {
-                if (list.id === action.payload.listID) {
-                    console.log("list in ADD_CARD listsReducer:", list);
-                    return {
-                        ...list,
-                        cards: [newCard]
-                    }
-                } else {
-                    return list;
-                }
-            });
-            return newState;
-        }
+        // case ADD_CARD: { // start with braces to give newState variable its own context so you can redeclare it again below
+        //     const newCard = {
+        //         text: action.payload.text,
+        //         id: action.payload.listID
+        //     };
+        //     //cardID += 1;
+        //     const newState = state.map(list => {
+        //         if (list.id === action.payload.listID) {
+        //             console.log("list in ADD_CARD listsReducer:", list);
+        //             return {
+        //                 ...list,
+        //                 cards: [newCard]
+        //             }
+        //         } else {
+        //             return list;
+        //         }
+        //     });
+        //     return newState;
+        // }
         case DRAGGED:
             const { droppableIdStart,
                 droppableIdEnd,
@@ -126,18 +126,18 @@ const listsReducer = (state = initialState, action) => {
             return newState;
         case LOAD_LISTS:
             return [...action.payload]
-        case LOAD_CARDS: {
-            const newState = state.map(list => {
-                list['cards'] = [...action.payload]
-            })
-            // if (list.id === action.payload.listID) {
-            //     console.log("list in ADD_CARD listsReducer:", list);
-            //     return {
-            //         ...list,
-            //         cards: [newCard]
-            //     }
-            return newState;
-        }
+        // case LOAD_CARDS: {
+        //     const newState = state.map(list => {
+        //         list['cards'] = [...action.payload]
+        //     })
+        //     // if (list.id === action.payload.listID) {
+        //     //     console.log("list in ADD_CARD listsReducer:", list);
+        //     //     return {
+        //     //         ...list,
+        //     //         cards: [newCard]
+        //     //     }
+        //     return newState;
+        // }
         default:
             return state;
     }

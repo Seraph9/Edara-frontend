@@ -107,7 +107,7 @@ class Board extends Component {
     };
 
     render() {
-        const { lists } = this.props;
+        const { lists, cards } = this.props;
         console.log("lists of current state in board.js: ", lists);
         return this.state.isLoggedIn ? (
             <DragDropContext onDragEnd={this.onDragEnd}>
@@ -127,7 +127,8 @@ class Board extends Component {
                                         key={list.id}
                                         listID={list.id}
                                         title={list.title}
-                                        cards={list.cards}
+                                        // cards={list.cards}
+                                        cards={cards}
                                         index={index}
                                     />
                                 )

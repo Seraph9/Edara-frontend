@@ -4,10 +4,27 @@ import AddButtons from './AddButtons';
 import DeleteList from './DeleteList';
 import EditList from './EditList';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
-import { createList } from '../actions';
+import { createList, loadCards } from '../actions';
 import { connect, useDispatch } from 'react-redux';
 
+
 function List(props) {
+    //const [listCards, setListCards] = useState();
+    const getListCards = () => {
+        fetch('http://localhost:8000/')
+            .then(response => response.json())
+            .then(data => {
+                // question: should I have a get route handler in notes router for all cards or in lists router?
+                console.log("cards get fetch in list.js: ", data);
+                props.dispatch(loadCards(data));
+                //setListCards(data);
+            })
+            .catch(error => console.error(error));
+    }
+    useEffect(() => {
+        getListCards();
+    }, []);
+
     const { title, cards, listID, index, lists } = props;
     console.log('cards in list.js: ', cards);
     console.log('lists in list.js: ', lists)
