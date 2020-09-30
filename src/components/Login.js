@@ -40,8 +40,7 @@ function Login() {
         const email = emailInput.value;
         const password = passwordInput.value;
         let body = { email, password };
-        console.log(email);
-        console.log(password);
+
         try {
             const res = await fetch('http://localhost:8000/users/token', {
                 method: 'POST',
@@ -65,9 +64,7 @@ function Login() {
             localStorage.setItem('EDARA_ACCESS_TOKEN', token);
             localStorage.setItem('EDARA_CURRENT_USER_ID', id);
 
-            console.log(localStorage['EDARA_CURRENT_USER_FULLNAME']);
-            console.log(localStorage['EDARA_ACCESS_TOKEN']);
-            console.log(localStorage['EDARA_CURRENT_USER_ID']);
+
 
             const currentUserId = localStorage.getItem('EDARA_CURRENT_USER_ID');
             // Redirects user to main page

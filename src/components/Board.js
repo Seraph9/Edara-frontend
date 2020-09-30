@@ -45,7 +45,7 @@ class Board extends Component {
         fetch('http://localhost:8000/lists')
             .then(response => response.json())
             .then(data => {
-                console.log("lists get fetch in board.js: ", data);
+
                 this.props.dispatch(loadLists(data));
                 //data.map(list => this.props.dispatch(list));
             })
@@ -93,7 +93,7 @@ class Board extends Component {
         // if (type === 'list') {
         //   return;
         // }
-        console.log('logged')
+
         this.props.dispatch(
             sort(
                 source.droppableId,

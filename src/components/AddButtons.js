@@ -112,7 +112,7 @@ class AddButtons extends React.Component {
         //console.log('event.current: ', e.currentTarget);
 
         let { dispatch, lists } = this.props;
-        console.log('this.props in AddButtons.js: ', this.props);
+
         const { text } = this.state;
         let listId = lists[0].id;
         //lists ? lists.map(list => {if (// if current selected list's id matches the list.id during mapping then only set that list.id to the variable listId to be sent as route parameter. listId = list.id) : 'No lists!';
@@ -125,7 +125,7 @@ class AddButtons extends React.Component {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(body)
                 })
-                console.log('res for handleCardAdd: ', res);
+
                 const data = await res.json();
                 console.log('Note data: ', data);
                 const { newNote } = data;
@@ -148,7 +148,7 @@ class AddButtons extends React.Component {
         const { dispatch } = this.props;
         const { text } = this.state;
         const userId = localStorage.getItem('EDARA_CURRENT_USER_ID');
-        console.log("userId is: ", userId);
+
 
         if (text) {
             const body = { userId, title: text };
@@ -158,15 +158,15 @@ class AddButtons extends React.Component {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(body)
                 })
-                console.log('res: ', res);
+
                 const data = await res.json();
-                console.log('List data: ', data);
+
                 const { list } = data;
-                console.log('new list title: ', list.title);
+
                 dispatch(createList(list.title));
                 const { lists } = this.props;
-                console.log("store-state lists: ", lists);
-                console.log("redux current store-state: ", store.getState());
+
+                //console.log("redux current store-state: ", store.getState());
                 //this.setState({ text: lists });
             } catch (err) {
                 console.error(err.message);

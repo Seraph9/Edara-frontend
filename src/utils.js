@@ -4,9 +4,9 @@ export const handleErrors = async (err) => {
         errorsContainer.innerHTML = "login failed";
     } else if (err.status >= 400 && err.status < 600) {
         const errorJSON = await err.json();
-        console.log(err.status);
+
         let errors = [];
-        console.log(errorJSON);
+
         //     let errorsHtml = [
         //         `
         //     <div class="alert alert-danger">

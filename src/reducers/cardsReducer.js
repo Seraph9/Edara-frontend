@@ -21,7 +21,8 @@ const cardsReducer = (state = initialState, action) => {
                     return list;
                 }
             });
-            return newState;
+            //return newState;
+            return [...action.payload]
         }
         case LOAD_CARDS: {
             const newState = state.map(list => {
@@ -33,7 +34,8 @@ const cardsReducer = (state = initialState, action) => {
             //         ...list,
             //         cards: [newCard]
             //     }
-            return newState;
+            //return newState;
+            return [...action.payload]
         }
         default:
             return state;

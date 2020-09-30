@@ -23,7 +23,7 @@ function List(props) {
     }
     useEffect(() => {
         getListCards();
-    }, []);
+    });
 
     const { title, cards, listID, index, lists } = props;
     console.log('cards in list.js: ', cards);
@@ -46,7 +46,7 @@ function List(props) {
                             <div ref={provided.innerRef} {...provided.droppableProps}>
                                 <h4>{title}</h4><DeleteList listID={listID} /><EditList listID={listID} />
                                 {/* {lists[2] ? <h4>{lists[2].title}</h4> : "loading"} */}
-                                {cards ? cards.map((card, index) => (<Cards key={card.id} index={index} id={card.id} text={card.text} />)) : "loading"}
+                                {cards ? cards.map((card, index) => (<Cards key={card.id} index={index} id={card.id} text={card.note} />)) : "loading"}
                                 {provided.placeholder}
                                 <AddButtons listID={listID} />
                             </div>

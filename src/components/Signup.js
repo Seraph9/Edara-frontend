@@ -40,9 +40,7 @@ function Signup() {
         const email = emailInput.value;
         const password = passwordInput.value;
         let body = { fullName, email, password };
-        console.log(fullName);
-        console.log(email);
-        console.log(password);
+
 
         try {
             const res = await fetch('http://localhost:8000/users', {
@@ -67,9 +65,9 @@ function Signup() {
             localStorage.setItem('EDARA_ACCESS_TOKEN', token);
             localStorage.setItem('EDARA_CURRENT_USER_ID', id);
 
-            console.log(localStorage.getItem('EDARA_CURRENT_USER_FULLNAME'));
-            console.log(localStorage.getItem('EDARA_ACCESS_TOKEN'));
-            console.log(localStorage.getItem('EDARA_CURRENT_USER_ID'));
+            // console.log(localStorage.getItem('EDARA_CURRENT_USER_FULLNAME'));
+            // console.log(localStorage.getItem('EDARA_ACCESS_TOKEN'));
+            // console.log(localStorage.getItem('EDARA_CURRENT_USER_ID'));
 
             const currentUserId = localStorage.getItem('EDARA_CURRENT_USER_ID');
 
