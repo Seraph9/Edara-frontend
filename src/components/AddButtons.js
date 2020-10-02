@@ -118,7 +118,7 @@ class AddButtons extends React.Component {
         //lists ? lists.map(list => {if (// if current selected list's id matches the list.id during mapping then only set that list.id to the variable listId to be sent as route parameter. listId = list.id) : 'No lists!';
         const userId = localStorage.getItem('EDARA_CURRENT_USER_ID');
         if (text) {
-            const body = { userId, note: text };
+            const body = { text };
             try {
                 const res = await fetch(`http://localhost:8000/lists/${listId}/notes`, {
                     method: 'POST',
@@ -127,10 +127,10 @@ class AddButtons extends React.Component {
                 })
 
                 const data = await res.json();
-                console.log('Note data: ', data);
-                const { newNote } = data;
-                console.log('new note text: ', newNote.note)
-                dispatch(createCard(newNote.note, newNote.listId));
+                console.log('Card data: ', data);
+                const { card } = data;
+                console.log('card text: ', card.text)
+                dispatch(createCard(card.text, card.listId));
                 this.setState({ text: '' });
             } catch (err) {
                 console.error(err.message);

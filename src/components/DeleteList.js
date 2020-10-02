@@ -11,6 +11,7 @@ function DeleteList(props) {
         //const listId = listID.substring(5, 6);
         //const userId = localStorage.getItem('EDARA_CURRENT_USER_ID');
         //const body = { userId };
+        // const res1 = await fetch(`http://localhost:8000/notes/${}`)
         const res = await fetch(`http://localhost:8000/lists/${listID}`, {
             method: 'DELETE',
             // headers: { 'Content-Type': 'application/json' },
