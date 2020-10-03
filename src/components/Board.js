@@ -125,7 +125,7 @@ class Board extends Component {
                                 return (
                                     <List
                                         key={list.id}
-                                        listID={list.id}
+                                        listId={list.id}
                                         title={list.title}
                                         // cards={list.cards}
                                         cards={cards}

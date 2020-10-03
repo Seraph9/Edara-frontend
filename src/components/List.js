@@ -10,8 +10,10 @@ import { connect, useDispatch } from 'react-redux';
 
 function List(props) {
     //const [listCards, setListCards] = useState();
+    const { title, cards, listId, index, lists } = props;
+    console.log("lists in list.js: ", lists);
     const getListCards = () => {
-        fetch('http://localhost:8000/cards')
+        fetch(`http://localhost:8000/lists/${listId}/cards`)
             .then(response => response.json())
             .then(data => {
                 // question: should I have a get route handler in notes router for all cards or in lists router?
@@ -25,12 +27,12 @@ function List(props) {
         getListCards();
     }, []);
 
-    const { title, cards, listID, index, lists } = props;
+
     console.log('cards in list.js: ', cards);
     console.log('lists in list.js: ', lists)
 
     return (
-        <Draggable draggableId={String(listID)} index={index}>
+        <Draggable draggableId={String(listId)} index={index}>
             {provided => (
                 <div
                     {...provided.draggableProps}
@@ -41,14 +43,14 @@ function List(props) {
                         ...provided.draggableProps.style
                     }}
                 >
-                    <Droppable droppableId={String(listID)} type='card'>
+                    <Droppable droppableId={String(listId)} type='card'>
                         {provided => (
                             <div ref={provided.innerRef} {...provided.droppableProps}>
-                                <h4>{title}</h4><DeleteList listID={listID} /><EditList listID={listID} />
+                                <h4>{title}</h4><DeleteList listId={listId} /><EditList listId={listId} />
                                 {/* {lists[2] ? <h4>{lists[2].title}</h4> : "loading"} */}
                                 {cards ? cards.map((card, index) => (<Cards key={card.id} index={index} id={card.id} text={card.text} />)) : "loading"}
                                 {provided.placeholder}
-                                <AddButtons listID={listID} />
+                                <AddButtons listId={listId} />
                             </div>
                         )}
                     </Droppable>
