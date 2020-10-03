@@ -1,30 +1,27 @@
-export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
-export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
+export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
+export const RECEIVE_USER_LOGOUT = 'RECEIVE_USER_LOGOUT';
+export const RECEIVE_NEW_USER = 'RECEIVE_NEW_USER';
 
-export const login = (text, listID) => {
+export const login = (userId, lists) => {
     return {
-        type: ADD_CARD,
+        type: RECEIVE_CURRENT_USER,
         payload: {
-            text, listID
+            userId, lists
         }
     };
 };
 
-export const logout = (text, listID) => {
+export const logout = userId => {
     return {
         type: RECEIVE_USER_LOGOUT,
-        payload: {
-            text, listID
-        }
+        payload: userId
     };
 };
 
-export const signUp = (text, listID) => {
+export const signUp = userId => {
     return {
-        type: ADD_CARD,
-        payload: {
-            text, listID
-        }
+        type: RECEIVE_NEW_USER,
+        payload: userId
     };
 };
 
