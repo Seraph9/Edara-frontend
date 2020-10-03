@@ -7,11 +7,11 @@ const cardsReducer = (state = initialState, action) => {
         case ADD_CARD: { // start with braces to give newState variable its own context so you can redeclare it again below
             const newCard = {
                 text: action.payload.text,
-                id: action.payload.listID
+                id: action.payload.listId
             };
             //cardID += 1;
             const newState = state.map(list => {
-                if (list.id === action.payload.listID) {
+                if (list.id === action.payload.listId) {
                     console.log("list in ADD_CARD listsReducer:", list);
                     return {
                         ...list,
@@ -28,7 +28,7 @@ const cardsReducer = (state = initialState, action) => {
             const newState = state.map(list => {
                 list['cards'] = [...action.payload]
             })
-            // if (list.id === action.payload.listID) {
+            // if (list.id === action.payload.listId) {
             //     console.log("list in ADD_CARD listsReducer:", list);
             //     return {
             //         ...list,

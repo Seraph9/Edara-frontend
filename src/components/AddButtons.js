@@ -120,7 +120,7 @@ class AddButtons extends React.Component {
         if (text) {
             const body = { text };
             try {
-                const res = await fetch(`http://localhost:8000/lists/${listId}/notes`, {
+                const res = await fetch(`http://localhost:8000/lists/${listId}/cards`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(body)

@@ -130,7 +130,7 @@ const listsReducer = (state = initialState, action) => {
         //     const newState = state.map(list => {
         //         list['cards'] = [...action.payload]
         //     })
-        //     // if (list.id === action.payload.listID) {
+        //     // if (list.id === action.payload.listId) {
         //     //     console.log("list in ADD_CARD listsReducer:", list);
         //     //     return {
         //     //         ...list,

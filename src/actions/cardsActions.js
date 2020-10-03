@@ -1,10 +1,10 @@
 import { ADD_CARD, LOAD_CARDS } from './index';
 
-export const createCard = (text, listID) => {
+export const createCard = (text, listId) => {
     return {
         type: ADD_CARD,
         payload: {
-            text, listID
+            text, listId
         }
     };
 };
