@@ -18,7 +18,8 @@ function List(props) {
             .then(data => {
                 // question: should I have a get route handler in notes router for all cards or in lists router?
                 console.log("cards get fetch in list.js: ", data);
-                props.dispatch(loadCards(data));
+                const listCards = data.map(list => list.Cards);
+                props.dispatch(loadCards(listCards));
                 //setListCards(data);
             })
             .catch(error => console.error(error));
@@ -29,7 +30,9 @@ function List(props) {
 
 
     console.log('cards in list.js: ', cards);
-    console.log('lists in list.js: ', lists)
+    console.log('lists in list.js: ', lists);
+    const { array } = cards;
+    console.log("array: ", array);
 
     return (
         <Draggable draggableId={String(listId)} index={index}>
@@ -48,7 +51,7 @@ function List(props) {
                             <div ref={provided.innerRef} {...provided.droppableProps}>
                                 <h4>{title}</h4><DeleteList listId={listId} /><EditList listId={listId} />
                                 {/* {lists[2] ? <h4>{lists[2].title}</h4> : "loading"} */}
-                                {cards ? cards.map((card, index) => (<Cards key={card.id} index={index} id={card.id} text={card.text} />)) : "loading"}
+                                {cards ? cards.map((card, index) => (<Cards key={card.listId} index={index} id={card.listId} text={card.text} />)) : "loading"}
                                 {provided.placeholder}
                                 <AddButtons listId={listId} />
                             </div>

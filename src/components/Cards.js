@@ -6,9 +6,9 @@ import { Draggable } from 'react-beautiful-dnd';
 import { blue } from '@material-ui/core/colors';
 
 
-const Cards = ({ text, id, index }) => {
+const Cards = ({ text, listId, index }) => {
     return (
-        <Draggable draggableId={String(id)} index={index}>
+        <Draggable draggableId={String(listId)} index={index}>
             {provided => (
                 <div
                     ref={provided.innerRef}

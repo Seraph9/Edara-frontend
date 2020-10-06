@@ -114,24 +114,30 @@ class AddButtons extends React.Component {
         let { dispatch, lists } = this.props;
 
         const { text } = this.state;
-        let listId = lists[0].id;
-        //lists ? lists.map(list => {if (// if current selected list's id matches the list.id during mapping then only set that list.id to the variable listId to be sent as route parameter. listId = list.id) : 'No lists!';
+        // let listId = lists[0].id;
+        // const lists ? lists.map(list => {
+        //     if (list.id === // if current selected list's id matches the list.id during mapping then only set that list.id to the variable listId to be sent as route parameter. listId = list.id) : 'No lists!';
         const userId = localStorage.getItem('EDARA_CURRENT_USER_ID');
         if (text) {
             const body = { text };
             try {
-                const res = await fetch(`http://localhost:8000/lists/${listId}/cards`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(body)
+                lists.map(async list => {
+                    if (list.id) {
+                        let listId = list.id;
+                        const res = await fetch(`http://localhost:8000/lists/${listId}/cards`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(body)
+                        })
+                        const data = await res.json();
+                        console.log('Card data: ', data);
+                        const { card } = data;
+                        console.log('card text: ', card.text)
+                        dispatch(createCard(card.text, card.listId));
+                        this.setState({ text: '' });
+                    }
                 })
 
-                const data = await res.json();
-                console.log('Card data: ', data);
-                const { card } = data;
-                console.log('card text: ', card.text)
-                dispatch(createCard(card.text, card.listId));
-                this.setState({ text: '' });
             } catch (err) {
                 console.error(err.message);
             }
