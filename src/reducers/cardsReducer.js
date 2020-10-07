@@ -22,21 +22,22 @@ const cardsReducer = (state = initialState, action) => {
                 }
             });
             //return newState;
-            return [...action.payload]
+            return [action.payload, ...newState];
         }
         case LOAD_CARDS: {
-            // const newState = state.map(list => {
-            //     console.log("action.payload in cardsReducer: ", action.payload);
-            //     list['cards'] = [...action.payload]
-            // })
+            const newState = state.map(list => {
+                console.log("action.payload in cardsReducer: ", action.payload);
+                list['cards'] = [...action.payload]
+            });
             // if (list.id === action.payload.listId) {
             //     console.log("list in ADD_CARD listsReducer:", list);
             //     return {
             //         ...list,
             //         cards: [newCard]
-            //     }
+            //    
+
             //return newState;
-            return [...action.payload]
+            return [action.payload, ...newState]
             // NOTE: since action.payload is an object now as the backend is sending it within an object with res.json() and object are not "iterable" in JS and you can't use spread operator with objects, only arrays.
         }
         default:
