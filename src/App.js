@@ -13,7 +13,7 @@ function App(props) {
       <BrowserRouter>
         <Switch>
           <Route exact path='/' component={Splash} />
-          <Route exact path='/lists' component={Board} />
+          <Route exact path='/edara' component={Board} />
           <Route path='*' component={NotFound} />
         </Switch>
       </BrowserRouter>

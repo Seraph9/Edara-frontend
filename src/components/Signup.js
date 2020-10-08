@@ -73,7 +73,7 @@ function Signup() {
 
             // Redirects user to main page
             //window.location.href = `/users/${currentUserId}`;
-            window.location.href = `/lists`;
+            window.location.href = `/edara`;
 
         } catch (err) {
             handleErrors(err);
