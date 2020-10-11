@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { handleErrors } from '../utils';
@@ -64,8 +63,6 @@ function Login() {
             localStorage.setItem('EDARA_CURRENT_USER_FULLNAME', name);
             localStorage.setItem('EDARA_ACCESS_TOKEN', token);
             localStorage.setItem('EDARA_CURRENT_USER_ID', id);
-
-
 
             const currentUserId = localStorage.getItem('EDARA_CURRENT_USER_ID');
             // Redirects user to main page
