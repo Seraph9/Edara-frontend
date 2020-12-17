@@ -1,6 +1,9 @@
 import React from 'react';
+
+
 import NavMenu from './NavMenu';
 import Login from './Login';
+import Footer from './Footer';
 
 
 function Splash() {
@@ -28,7 +31,7 @@ function Splash() {
                 <h1>Edara reducing complexity! Use Edara the way your team works best. We’ve got the flexibility to fit any team’s style.</h1>
             </div>
             <div className='parallax5'></div>
-
+            <Footer />
         </>
     );
 };
